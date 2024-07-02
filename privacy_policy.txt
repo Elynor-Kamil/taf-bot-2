@@ -1,0 +1,9 @@
+PRIVACY POLICY (TAF BOT)
+
+WHAT END USER DATA DO WE STORE?
+We do not store any personally identifiable data.
+The TAF Discord bot is used only for immediate events and actions performed on the server. No data is stored as part of these processes.
+In addition to not storing data, the TAF Discord bot is not enabled to share information between servers.
+
+WHO DO WE SHARE DATA WITH?
+We do not share any data with third parties.
