@@ -39,7 +39,7 @@ async def on_ready():
 
 
 # works but is limited - slowly building working stuff into this
-@bot.hybrid_command(name="get_help", description="Alert game team you need help or adjudication")
+@bot.hybrid_command(name="get_help", description="Request for help, adjudication, or clarification")
 async def get_help(ctx: commands.Context, message: str):
     crew_channel = await bot.fetch_channel(1255558358790832299)
     at_user = ctx.author.mention
