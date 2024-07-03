@@ -39,8 +39,8 @@ async def on_ready():
 
 
 # works but is limited - slowly building working stuff into this
-@bot.hybrid_command(name="attention", description="Alert game team you need help or adjudication")
-async def attention(ctx: commands.Context, message: str):
+@bot.hybrid_command(name="get_help", description="Alert game team you need help or adjudication")
+async def get_help(ctx: commands.Context, message: str):
     crew_channel = await bot.fetch_channel(1255558358790832299)
     at_user = ctx.author.mention
     crew = ctx.guild.get_role(1255558358790832294)  # replace with actual crew role ID in live server
@@ -52,7 +52,7 @@ async def attention(ctx: commands.Context, message: str):
                   )
     await crew_channel.send(
         f"{at_crew} you got a request from username '**{ctx.author.name}**', "
-        f"current server nickname '**{ctx.author.nick}**'. "
+        f"server nickname at time of sending '**{ctx.author.nick}**'. "
         f"\nMessage sent from: {ctx.channel.jump_url}"
         f"\nMessage sent: \n> _{message}_"
     )
