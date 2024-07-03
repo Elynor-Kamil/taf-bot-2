@@ -43,16 +43,18 @@ async def on_ready():
 async def attention(ctx: commands.Context, message: str):
     crew_channel = await bot.fetch_channel(1255558358790832299)
     at_user = ctx.author.mention
+    crew = ctx.guild.get_role(1255558358790832294)  # replace with actual crew role ID in live server
+    at_crew = crew.mention
     await ctx.reply(
                         f"Your response has been sent to the game team, {at_user}. "
                         f"The game team are checking and will get back to you soon. "
-                        f"\nThe message you sent: \n_{message}_"
+                        f"\nThe message you sent: \n> _{message}_"
                   )
     await crew_channel.send(
-        f"@crew you got a request from username '**{ctx.author.name}**', "
+        f"{at_crew} you got a request from username '**{ctx.author.name}**', "
         f"current server nickname '**{ctx.author.nick}**'. "
         f"\nMessage sent from: {ctx.channel.jump_url}"
-        f"\nMessage sent: \n_{message}_"
+        f"\nMessage sent: \n> _{message}_"
     )
 
     # await message.channel.send("Please go to <#channelID>")
