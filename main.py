@@ -40,64 +40,70 @@ async def on_ready():
 
 # works but is limited - slowly building working stuff into this
 @bot.hybrid_command(name="attention", description="Alert game team you need help or adjudication")
-async def attention(ctx: commands.Context):
+async def attention(ctx: commands.Context, message: str):
     crew_channel = await bot.fetch_channel(1255558358790832299)
-    msg = Message.content
     at_user = ctx.author.mention
-    await ctx.reply(f"Your current channel is {ctx.channel}, {at_user}. The game team are checking and will get back to you soon")
-    # msg = await ctx.channel.fetch_message()
-    # need to include username again
-    await crew_channel.send(f"you got a message from {ctx.channel}! The message is \n{msg}")
-
-    # await message.channel.send("Please go to <#channelID>")
-    # await channel.send(f"current chasnnel is: {message.crew_channel}, message is \n{message}")
-    # message_channel = ctx.channel
-
-
-@bot.hybrid_command(name="attention2", description="electric boogaloo")
-# @app_commands.describe(
-#     choices="hello, tell me what you want",
-# )
-async def attention2(
-        ctx: commands.Context,
-        # choices: app_commands.Choice[str]
-):
-    # Update specific channel ID when you know the real server ID channel
-    crew_channel = await bot.fetch_channel(1255558358790832299)
-    user_input = await bot.wait_for("message")
-    await ctx.reply(f"Your current channel is {ctx.channel}. The game team are checking and will get back to you soon")
-    msg = await ctx.channel.fetch_message()
-    await crew_channel.send(f"zeroth test: message sent was \n'{user_input}'")
-    await crew_channel.send(f"first test: message sent was \n'{user_input.content}'")
-    await crew_channel.send(f"second test: message sent was \n'{msg}'")
-    # await crew_channel.send(f"you got a message from {ctx.channel}! The message is \n{ctx.send(msg.embeds[0].description)}")
+    await ctx.reply(
+                        f"Your response has been sent to the game team, {at_user}. "
+                        f"The game team are checking and will get back to you soon. "
+                        f"\nThe message you sent: \n_{message}_"
+                  )
+    await crew_channel.send(
+        f"@crew you got a request from username '**{ctx.author.name}**', "
+        f"current server nickname '**{ctx.author.nick}**'. "
+        f"\nMessage sent from: {ctx.channel.jump_url}"
+        f"\nMessage sent: \n_{message}_"
+    )
 
     # await message.channel.send("Please go to <#channelID>")
     # await channel.send(f"current channel is: {message.crew_channel}, message is \n{message}")
     # message_channel = ctx.channel
 
 
-# the command i'm doing my messy testing on. Message crashes. ctx.author.nick returns None, 
-# Message.author.nick returns exception
-# message.author.nick returns None as well iirc but might return exception - no time to rerun at this second
-@bot.hybrid_command(name="attention3", description="i'm outta control")
-async def attention3(ctx: commands.Context, message: Message):
-    crew_channel = await bot.fetch_channel(1255558358790832299)
-    # msg = Message.content
-    at_user = ctx.author.mention
-    user_channel = ctx.channel
-    # testing = await ctx.fetch_message(message.id)
-    # testing = Message.author.nick
-    # testing = ctx.author.nick
-    testing = await ctx.fetch_message(bot.user.id)
-    guild = await bot.fetch_guild(1255558358790832291)  # need to replace with new guild_id of live server
-    # nickname = await guild.fetch_member(message.author.id)
-    # msg_link = Message.channel.mention
-    await ctx.reply(
-        f"current channel is {user_channel}, user{at_user} with messageid {'message.id'} {testing}. The game team are checking and will get back to you soon")
-    # msg = await ctx.channel.fetch_message()
-    await crew_channel.send(
-        f"you got a message from {user_channel}! The message is from {'wherever'}, message: \n{'msg'}")
+# @bot.hybrid_command(name="attention2", description="electric boogaloo")
+# # @app_commands.describe(
+# #     choices="hello, tell me what you want",
+# # )
+# async def attention2(
+#         ctx: commands.Context,
+#         # choices: app_commands.Choice[str]
+# ):
+#     # Update specific channel ID when you know the real server ID channel
+#     crew_channel = await bot.fetch_channel(1255558358790832299)
+#     user_input = await bot.wait_for("message")
+#     await ctx.reply(f"Your current channel is {ctx.channel}. The game team are checking and will get back to you soon")
+#     msg = await ctx.channel.fetch_message()
+#     await crew_channel.send(f"zeroth test: message sent was \n'{user_input}'")
+#     await crew_channel.send(f"first test: message sent was \n'{user_input.content}'")
+#     await crew_channel.send(f"second test: message sent was \n'{msg}'")
+#     # await crew_channel.send(f"you got a message from {ctx.channel}! The message is \n{ctx.send(msg.embeds[0].description)}")
+#
+#     # await message.channel.send("Please go to <#channelID>")
+#     # await channel.send(f"current channel is: {message.crew_channel}, message is \n{message}")
+#     # message_channel = ctx.channel
+#
+#
+# # the command i'm doing my messy testing on. Message crashes. ctx.author.nick returns None,
+# # Message.author.nick returns exception
+# # message.author.nick returns None as well iirc but might return exception - no time to rerun at this second
+# @bot.hybrid_command(name="attention3", description="i'm outta control")
+# async def attention3(ctx: commands.Context, message: Message):
+#     crew_channel = await bot.fetch_channel(1255558358790832299)
+#     # msg = Message.content
+#     at_user = ctx.author.mention
+#     user_channel = ctx.channel
+#     # testing = await ctx.fetch_message(message.id)
+#     # testing = Message.author.nick
+#     # testing = ctx.author.nick
+#     testing = await ctx.fetch_message(bot.user.id)
+#     guild = await bot.fetch_guild(1255558358790832291)  # need to replace with new guild_id of live server
+#     # nickname = await guild.fetch_member(message.author.id)
+#     # msg_link = Message.channel.mention
+#     await ctx.reply(
+#         f"current channel is {user_channel}, user{at_user} with messageid {'message.id'} {testing}. The game team are checking and will get back to you soon")
+#     # msg = await ctx.channel.fetch_message()
+#     await crew_channel.send(
+#         f"you got a message from {user_channel}! The message is from {'wherever'}, message: \n{'msg'}")
 
 
 # main function
